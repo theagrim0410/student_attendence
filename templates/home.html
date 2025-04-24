@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Attendance System</title>
+
+  <style>
+
+    html{    
+    scroll-padding-top: 150px;
+    scroll-behavior: smooth;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      background: linear-gradient(45deg, #934fac, #111013, #111c97, #0e508e);
+      background-size: 400% 400%;
+      animation: gradient 10s ease infinite;
+      color: white;
+      scroll-behavior: smooth;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    @keyframes gradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    header {
+      width: fit-content;
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 15px 30px;
+      border-radius: 50px;
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: fixed;
+      top: 20px;
+      z-index: 999;
+    }
+
+    nav {
+      display: flex;
+      gap: 30px;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 1.2rem;
+      font-weight: bold;
+      padding: 5px 10px;
+      transition: color 0.3s ease, background-color 0.3s ease;
+      border-radius: 20px;
+    }
+
+    nav a:hover {
+      color: #e76509;
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    main {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-top: 120px;
+      width: 100%;
+    }
+
+    .home {
+      padding: 140px 20px;
+      text-align: center;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 2.5rem;
+      font-weight: bold;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    .highlighted-text {
+      color: #e76509;
+      font-weight: bold;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    }
+
+    .container {
+      text-align: center;
+      margin-bottom: 50px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: center;
+    }
+
+    .button {
+      background-color: #6c63ff;
+      color: white;
+      font-size: 18px;
+      border: none;
+      padding: 15px 32px;
+      cursor: pointer;
+      border-radius: 30px;
+      transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+      min-width: 220px;
+    }
+
+    .button:hover {
+      background-color: #5948e6;
+      transform: scale(1.1);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .button:active {
+      background-color: #4531b0;
+      transform: scale(1);
+    }
+
+    .button:focus {
+      outline: none;
+    }
+
+    #about {
+      background-color: rgba(0, 0, 0, 0.4);
+      padding: 50px 20px;
+      margin: 98px 20px 40px;
+      border-radius: 20px;
+      max-width: 800px;
+      text-align: center;
+    }
+
+    #about h2 {
+      margin-bottom: 20px;
+      font-size: 2rem;
+    }
+
+    #about p {
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    .footer {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #fff;
+      margin-top: 50px;
+      padding-bottom: 20px;
+    }
+
+    /* RESPONSIVE DESIGN */
+    @media (max-width: 768px) {
+      nav {
+        gap: 15px;
+      }
+
+      nav a {
+        font-size: 1rem;
+      }
+
+      header {
+        padding: 10px 20px;
+        border-radius: 40px;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      .button {
+        font-size: 16px;
+        padding: 12px 24px;
+        min-width: 180px;
+      }
+
+      #about {
+        padding: 30px 15px;
+      }
+
+      #about h2 {
+        font-size: 1.5rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      nav {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      header {
+        top: 10px;
+      }
+
+      .home {
+        padding: 100px 10px 40px;
+      }
+
+      .container {
+        flex-direction: column;
+      }
+
+      .button {
+        width: 100%;
+        max-width: 300px;
+        margin-left: 38px;
+      }
+
+      #about p {
+        font-size: 0.95rem;
+      }
+    }
+  </style>
+
+  <script>
+    function goToPage(route) {
+      window.location.href = route;
+    }
+  </script>
+</head>
+<body>
+
+  <header>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#about">About</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="home">
+      <h1>Welcome to <span class="highlighted-text">Attendance Management System</span></h1>
+      <div class="container">
+        <button class="button" onclick="goToPage('/in')">Mark Attendance In</button>
+        <button class="button" onclick="goToPage('/out')">Mark Attendance Out</button>
+        <button class="button" onclick="goToPage('/login')">View Attendance Data</button>
+      </div>
+    </div>
+
+    <section id="about">
+      <h2>About Attendance Management System</h2> 
+    
+      <p>
+        Our <span class="highlighted-text">Attendance Management System</span> offers an efficient and modern solution for tracking student attendance. 
+        Students can easily <strong>scan their ID cards</strong> to mark their "In" and "Out" attendance automatically, removing the need for manual entry.
+      </p>
+      <p>
+        With a secure login system, each student can <strong>access their personal attendance dashboard</strong> and view their <strong>attendance graph</strong> across the semester, helping them monitor and improve their presence consistently.
+      </p>
+      <p>
+        Additionally, teachers have the ability to <strong>access and review the attendance records of all students</strong> in a visually appealing <strong>graphical format</strong>. 
+        This ensures easier management, quick insights, and better decision-making for academic performance tracking.
+      </p>
+      <p>
+        Our system ensures <strong>accuracy, transparency, and convenience</strong> by combining technology and user-friendly design, revolutionizing the traditional attendance process.
+      </p>
+    
+    </section>
+
+    <div class="footer">
+      <p>Developed by AGRIM SAXENA | © 2025</p>
+    </div>
+  </main>
+
+</body>
+</html>
